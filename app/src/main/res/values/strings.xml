@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">DreamCatcher</string>
+    <string name="action_settings">setting</string>
+    <string name="loading">loading.</string>
+    <string name="retry_load">retry</string>
+    <string name="empty_record">none record</string>
+    <string name="minute">%d minutes</string>
+    <string name="str_minute">minutes</string>
+    <string name="after_minute">after %d minutes</string>
+    <string name="db_setting">set voice threshold value:%d</string>
+    <string name="title_about">about</string>
+    <string name="str_seconds">seconds</string>
+    <string name="duration_seconds">%ss</string>
+    <string name="str_just_now">just now</string>
+    <string name="str_listener_voice">Listen to the decibels of the current environment</string>
+    <string name="action_select_deadline">Select end time</string>
+    <string name="action_select_recording_length">Select recording length</string>
+    <string name="action_select_sleep_time">Estimated time to fall asleep</string>
+    <string name="action_start">start</string>
+    <string name="title_task">task</string>
+    <string name="str_stop_listen_voice">stop</string>
+    <string name="sleep_suggestion">The estimated time of sleep is not recommended for more than 30 minutes</string>
+    <string name="record_suggestion">Recording time is not recommended to exceed 30 minutes</string>
+    <string name="end_suggestion">Closing time is not recommended for more than 360 minutes</string>
+    <string name="action_delete">delete</string>
+    <string name="action_share">share</string>
+    <string name="title_catcher_dialog">start dream catcher?</string>
+    <string name="content_catcher_dialog">Listen for %d minutes, and every time you are in an environment with more than %d decibels, you will automatically record a %d minutes audio clip.</string>
+    <string name="action_confirm">@android:string/ok</string>
+    <string name="action_cancel">@android:string/cancel</string>
+    <string name="tips_authority">Microphone permission is used for recording, while reading and writing permission is used for recording file reading and playing. Please verify the permission to ensure the normal function of APP</string>
+    <string name="title_dialog_delete">delete record</string>
+    <string name="miss_permission">Lack of permissions</string>
+    <string name="str_retry_apply">apply</string>
+    <string name="tips_play_fail">File corrupted, playback failed</string>
+    <string name="duration">%s:%s</string>
+    <string name="banner_ad_unit_id">ca-app-pub-8884790662094305/7222184323</string>
+
+    <string name="screen_ad_unit_id">ca-app-pub-8884790662094305/7638785594</string>
+    <string name="google_adv_key">ca-app-pub-8884790662094305/7638785594</string>
+    <string name="app_desc">DreamCatcher is a kind of DreamCatcher software. You can set the threshold of sound decibel. When the environment you are in exceeds this threshold, the APP will automatically turn on the recording function. 是一款梦话捕获软件，你可以设定声音分贝阈值，当你所处的环境超过该阈值，APP会自动开启录音功能。</string>
+    <string name="action_show_file">filePath</string>
+
+</resources>

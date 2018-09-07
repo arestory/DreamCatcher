@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">DreamCatcher</string>
+    <string name="action_settings">设置</string>
+    <string name="loading">正在加载数据...</string>
+    <string name="retry_load">点击重新加载</string>
+    <string name="empty_record">没有记录</string>
+    <string name="minute">%d分钟</string>
+    <string name="str_minute">分钟后</string>
+
+    <string name="duration_seconds">%s秒</string>
+    <string name="after_minute">%d分钟后</string>
+    <string name="db_setting">设置声音分贝阈值:%d</string>
+    <string name="title_about">关于</string>
+    <string name="str_seconds">秒</string>
+    <string name="str_just_now">关于</string>
+    <string name="str_listener_voice">监听当前环境声音分贝</string>
+    <string name="action_select_deadline">选择结束时间</string>
+    <string name="action_select_recording_length">选择录音时长</string>
+    <string name="action_select_sleep_time">预计入睡时间</string>
+    <string name="action_start">开始</string>
+    <string name="title_task">任务</string>
+    <string name="str_stop_listen_voice">停止监听</string>
+    <string name="sleep_suggestion">预计入睡时间不建议超过30分钟</string>
+    <string name="end_suggestion">结束时间不建议超过360分钟</string>
+    <string name="record_suggestion">录音时间不建议超过30分钟</string>
+    <string name="action_delete">删除</string>
+    <string name="action_share">分享</string>
+    <string name="title_catcher_dialog">是否开始捕捉梦话</string>
+    <string name="content_catcher_dialog">持续监听%d分钟，每当你处于的环境声音分贝超过%d时，将会自动录制一段时长%d分钟的音频。</string>
+    <string name="action_confirm">确定</string>
+    <string name="action_cancel">取消</string>
+    <string name="tips_authority">麦克风权限用于录音使用，读写权限则是用于录音文件读取播放，请通过权限验证以确保APP的功能正常</string>
+    <string name="title_dialog_delete">删除记录</string>
+    <string name="miss_permission">权限缺失</string>
+    <string name="str_retry_apply">重新申请</string>
+    <string name="tips_play_fail">文件损坏，播放失败</string>
+    <string name="duration">%s分钟%s秒</string>
+    <string name="banner_ad_unit_id">ca-app-pub-8884790662094305/7222184323</string>
+    <string name="screen_ad_unit_id">ca-app-pub-8884790662094305/7638785594</string>
+    <string name="google_adv_key">ca-app-pub-8884790662094305/7638785594</string>
+    <string name="app_desc">DreamCatcher 是一款梦话捕获软件，你可以设定声音分贝阈值，当你所处的环境超过该阈值，APP会自动开启录音功能。</string>
+    <string name="action_show_file">文件路径</string>
+
+</resources>
