@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 android {
@@ -94,4 +93,7 @@ android {
         implementation 'com.google.android.gms:play-services-ads:10.2.1'
         implementation(name: 'bugly_crashreport_upgrade-1.3.5', ext: 'aar')
     }
+}
+dependencies {
+    implementation files('libs/AppOffer_3.0.3.jar')
 }

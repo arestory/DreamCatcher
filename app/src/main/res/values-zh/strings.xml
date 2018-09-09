@@ -5,7 +5,7 @@
     <string name="retry_load">点击重新加载</string>
     <string name="empty_record">没有记录</string>
     <string name="minute">%d分钟</string>
-    <string name="str_minute">分钟后</string>
+    <string name="str_minute">分钟</string>
 
     <string name="duration_seconds">%s秒</string>
     <string name="after_minute">%d分钟后</string>

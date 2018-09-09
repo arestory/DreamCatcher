@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import cn.waps.AppConnect
 import com.ares.datacontentlayout.DataContentLayout
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
@@ -39,6 +40,7 @@ import ywq.ares.dreamcatcher.util.RxBus
 import java.io.File
 import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.concurrent.timerTask
 
 class MainActivity : AppCompatActivity() {
 
@@ -55,6 +57,14 @@ class MainActivity : AppCompatActivity() {
         initUser()
         checkPermission()
         getDataList()
+
+        AppConnect.getInstance(this).showPopAd(this)
+
+        Timer().schedule(timerTask {
+
+            AppConnect.getInstance(this@MainActivity).showBannerAd(this@MainActivity,advLayout)
+        },10000)
+
         disposable = RxBus.get().toFlowable(SoundRecord::class.java).observeOn(AndroidSchedulers.mainThread()).subscribe {
 
             adapter.addItem(it)
@@ -67,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         }
         fab.setOnClickListener {
 
-            RecordVoiceActivity.start(this) 
+            RecordVoiceActivity.start(this)
         }
 
 
@@ -162,13 +172,11 @@ class MainActivity : AppCompatActivity() {
     private fun showAdv() {
 
 
-
-
         val adRequest = AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build()
 
 
         adView.loadAd(adRequest)
-        adView.adListener =object : AdListener() {
+        adView.adListener = object : AdListener() {
 
             override fun onAdClosed() {
 
@@ -206,6 +214,7 @@ class MainActivity : AppCompatActivity() {
 
 
                 it.size > 0 -> {
+
 
                     val list = it
                     val validList = (0 until list.size).map {
@@ -248,8 +257,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-
 
 
     private fun initRv() {
@@ -301,7 +308,7 @@ class MainActivity : AppCompatActivity() {
 
                         showToast("权限不够")
 
-                    }else{
+                    } else {
                         showToast("文件路径:${sound.url}")
 
                     }
@@ -317,11 +324,9 @@ class MainActivity : AppCompatActivity() {
             override fun onPlaying(item: SoundRecord) {
 
 
-
             }
 
             override fun finish(item: SoundRecord) {
-
 
 
             }
@@ -337,6 +342,7 @@ class MainActivity : AppCompatActivity() {
         swipeLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent)
         swipeLayout.setOnRefreshListener {
 
+            adapter.release()
             database.soundDao().queryAll()?.delay(2, TimeUnit.SECONDS)?.subscribeOn(Schedulers.io())?.observeOn(AndroidSchedulers.mainThread())?.subscribe {
 
                 if (it.size > 0) {
@@ -372,10 +378,11 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-    fun showToast(msg:String){
+
+   private fun showToast(msg: String) {
 
 
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

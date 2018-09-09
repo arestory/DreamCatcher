@@ -460,7 +460,8 @@ class RecordItemAdapter : RecyclerView.Adapter<RecordItemAdapter.ViewHolder>() {
 
         for (obj in mpForSound.values) {
 
-            obj.release()
+            obj.stop()
+            obj.releaseTimeTask()
         }
         mpForSound.clear()
 

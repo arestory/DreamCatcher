@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+import cn.waps.AppConnect
 import kotlinx.android.synthetic.main.activity_setting.*
 import ywq.ares.dreamcatcher.R
 import ywq.ares.dreamcatcher.ui.adapter.SettingAdapter
@@ -21,7 +22,7 @@ class SettingActivity : BaseActivity() {
 
         val adapter = SettingAdapter()
 
-        adapter.addData(SettingItem(R.drawable.ic_all_inclusive_black_24dp,"开放更多功能"))
+        adapter.addData(SettingItem(R.drawable.ic_all_inclusive_black_24dp,"更多推荐应用"))
         adapter.addData(SettingItem(R.drawable.ic_system_update_alt_black_24dp,"检查更新"))
         adapter.addData(SettingItem(R.drawable.ic_delete_forever_black_48dp,"去广告"))
 
@@ -35,6 +36,7 @@ class SettingActivity : BaseActivity() {
         adapter.setOnItemClickListener { item, position ->
 
 
+            AppConnect.getInstance(this).showAppOffers(this)
             Toast.makeText(this,"item = ${item.title}",Toast.LENGTH_SHORT).show()
         }
 

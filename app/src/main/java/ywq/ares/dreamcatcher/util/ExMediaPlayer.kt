@@ -24,6 +24,7 @@ class ExMediaPlayer : MediaPlayer() {
         timer!!.schedule(object : TimerTask() {
             override fun run() {
 
+
                 val currentPosition = this@ExMediaPlayer.currentPosition
                 val duration = this@ExMediaPlayer.duration
                 val progress = (currentPosition * 100.0f / duration).toInt()
@@ -41,6 +42,7 @@ class ExMediaPlayer : MediaPlayer() {
 
     fun releaseTimeTask() {
 
+        release()
         timer!!.cancel()
         timer = null
     }

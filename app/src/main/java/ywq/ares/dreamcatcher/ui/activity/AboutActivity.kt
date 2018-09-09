@@ -2,10 +2,11 @@ package ywq.ares.dreamcatcher.ui.activity
 
 import android.content.Context
 import android.content.Intent
+import cn.waps.AppConnect
 import kotlinx.android.synthetic.main.activity_about.*
 import ywq.ares.dreamcatcher.R
 
-class AboutActivity:BaseActivity() {
+class AboutActivity : BaseActivity() {
 
 
     override fun getLayoutId(): Int {
@@ -15,18 +16,18 @@ class AboutActivity:BaseActivity() {
 
     override fun doMain() {
 
-         initToolbarSetting(toolbar)
-
+        initToolbarSetting(toolbar)
+        AppConnect.getInstance(this).showBannerAd(this,advLayout)
 
     }
 
 
     companion object {
 
-        fun start(context: Context){
+        fun start(context: Context) {
 
 
-            context.startActivity(Intent(context,AboutActivity::class.java))
+            context.startActivity(Intent(context, AboutActivity::class.java))
 
         }
     }

@@ -25,6 +25,7 @@
 
 
     <LinearLayout
+        android:id="@+id/rootLayout"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:orientation="vertical"
         android:padding="10dp"
@@ -46,7 +47,11 @@
             android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/advLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 
