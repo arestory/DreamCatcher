@@ -36,6 +36,7 @@
             android:textColor="#000000"
             android:text="DreamCatcher V1.0.0"
             android:textSize="20sp"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -43,7 +44,7 @@
             android:layout_marginTop="20dp"
             android:id="@+id/tvDesc"
             android:textColor="#000000"
-            android:text="DreamCatcher 是一款梦话捕获软件，你可以设定声音分贝阈值，当你所处的环境超过该阈值，APP会自动开启录音功能。"
+            android:text="@string/app_desc"
             android:textSize="18sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

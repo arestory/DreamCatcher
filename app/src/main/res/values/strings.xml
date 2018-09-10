@@ -35,10 +35,12 @@
     <string name="tips_play_fail">File corrupted, playback failed</string>
     <string name="duration">%s:%s</string>
     <string name="banner_ad_unit_id">ca-app-pub-8884790662094305/7222184323</string>
+    <string name="action_jump">jump</string>
 
     <string name="screen_ad_unit_id">ca-app-pub-8884790662094305/7638785594</string>
     <string name="google_adv_key">ca-app-pub-8884790662094305/7638785594</string>
-    <string name="app_desc">DreamCatcher is a kind of DreamCatcher software. You can set the threshold of sound decibel. When the environment you are in exceeds this threshold, the APP will automatically turn on the recording function. 是一款梦话捕获软件，你可以设定声音分贝阈值，当你所处的环境超过该阈值，APP会自动开启录音功能。</string>
+    <string name="app_desc">DreamCatcher is a kind of DreamCatcher software. You can set the threshold of sound decibel. When the environment you are in exceeds this threshold, the APP will automatically turn on the recording function.</string>
     <string name="action_show_file">filePath</string>
+    <string name="title_alert_dialog" translatable="false">"To ensure that you can normally use the functions of the APP, please jump to the application permission and open the corresponding application permission "</string>
 
 </resources>

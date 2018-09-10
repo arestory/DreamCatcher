@@ -1,9 +1,7 @@
 package ywq.ares.dreamcatcher.ui.activity
 
 import android.Manifest
-import android.content.ComponentName
 import android.content.DialogInterface
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 
@@ -15,19 +13,21 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.waps.AppConnect
+import cn.waps.AppListener
 import com.ares.datacontentlayout.DataContentLayout
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
-import com.tencent.bugly.crashreport.CrashReport
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import org.jetbrains.anko.toast
 import ywq.ares.dreamcatcher.R
 import ywq.ares.dreamcatcher.SoundApp
 import ywq.ares.dreamcatcher.room.AppDatabase
@@ -36,6 +36,7 @@ import ywq.ares.dreamcatcher.ui.adapter.RecordItemAdapter
 import ywq.ares.dreamcatcher.ui.bean.SoundRecord
 import ywq.ares.dreamcatcher.ui.bean.User
 import ywq.ares.dreamcatcher.util.DeviceUtil
+import ywq.ares.dreamcatcher.util.PermissionUtils
 import ywq.ares.dreamcatcher.util.RxBus
 import java.io.File
 import java.util.*
@@ -48,6 +49,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: RecordItemAdapter
     private lateinit var disposable: Disposable
 
+    private var pauseAndResume = false
+    private var clickJump = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -56,14 +59,8 @@ class MainActivity : AppCompatActivity() {
         initDB()
         initUser()
         checkPermission()
-        getDataList()
 
-        AppConnect.getInstance(this).showPopAd(this)
 
-        Timer().schedule(timerTask {
-
-            AppConnect.getInstance(this@MainActivity).showBannerAd(this@MainActivity,advLayout)
-        },10000)
 
         disposable = RxBus.get().toFlowable(SoundRecord::class.java).observeOn(AndroidSchedulers.mainThread()).subscribe {
 
@@ -104,6 +101,25 @@ class MainActivity : AppCompatActivity() {
         }
         println("user = $cacheUser")
 
+
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+
+        println("------- onresume -------")
+        if(pauseAndResume&&clickJump){
+            checkPermission()
+        }
+        pauseAndResume = false
+        clickJump=false
+    }
+
+    override fun onPause() {
+        super.onPause()
+        println("------- onPause -------")
+        pauseAndResume=true
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -113,17 +129,74 @@ class MainActivity : AppCompatActivity() {
 
         println("权限申请通过 ${!isPermissionPass}")
 
-        if (isPermissionPass) {
 
-            showDialog()
 
+
+        if (!isPermissionPass) {
+
+            getDataList()
+
+
+        } else {
+
+            val ignorePer= permissions.map {
+
+
+                //检测用户是否点击了不再询问
+                val flag =  ActivityCompat.shouldShowRequestPermissionRationale(this,it)
+
+                println(" it per = $flag")
+                 flag
+            }.any {
+
+                false
+            }
+            if(!ignorePer){
+
+                showAlertDialog()
+
+
+            }else{
+                showRequestPermissionDialog()
+
+            }
         }
 
 
     }
 
 
-    private fun showDialog() {
+
+    private fun showAlertDialog() {
+
+        val dialog = AlertDialog.Builder(this).setMessage(getString(R.string.title_alert_dialog)).setPositiveButton(getString(R.string.action_jump), object : DialogInterface.OnClickListener {
+
+            override fun onClick(p0: DialogInterface?, p1: Int) {
+                clickJump= true
+                PermissionUtils(this@MainActivity).startPermissionSetting()
+
+            }
+        }).setNegativeButton(R.string.action_cancel, object : DialogInterface.OnClickListener {
+
+            override fun onClick(p0: DialogInterface?, p1: Int) {
+
+
+                finish()
+            }
+        }).create()
+
+        dialog.setOnCancelListener {
+
+            toast("请同意这些权限，否则无法使用")
+            finish()
+        }
+
+        dialog.show()
+    }
+
+
+
+    private fun showRequestPermissionDialog() {
 
         val dialog = AlertDialog.Builder(this).setTitle(getString(R.string.miss_permission)).setPositiveButton(getString(R.string.str_retry_apply), object : DialogInterface.OnClickListener {
 
@@ -139,6 +212,11 @@ class MainActivity : AppCompatActivity() {
             }
         }).create()
 
+        dialog.setOnCancelListener {
+
+            toast("请同意这些权限，否则无法使用")
+            finish()
+        }
 
         dialog.show()
     }
@@ -197,7 +275,34 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val timer = Timer()
 
+        timer.schedule(timerTask {
+
+
+            AppConnect.getInstance(this@MainActivity).showBannerAd(this@MainActivity, advLayout, object : AppListener() {
+
+
+                override fun onBannerClose() {
+                    super.onBannerClose()
+                    runOnUiThread {
+
+                        advLayout.visibility = View.GONE
+
+                    }
+                }
+            })
+            timer.schedule(timerTask {
+
+
+                runOnUiThread {
+                    advLayout.visibility = View.VISIBLE
+
+                }
+
+
+            }, 1000)
+        }, 10000)
     }
 
     private fun getDataList() {
@@ -206,7 +311,6 @@ class MainActivity : AppCompatActivity() {
         soundDao = database.soundDao()
 
         loadingView.showLoading()
-//        showAdv()
         dataSubscribe = soundDao?.queryAll()?.subscribeOn(Schedulers.io())?.observeOn(AndroidSchedulers.mainThread())?.subscribe {
 
 
@@ -245,7 +349,10 @@ class MainActivity : AppCompatActivity() {
                         adapter.itemList = (validList as ArrayList<SoundRecord>)
                         adapter.notifyDataSetChanged()
                         loadingView.showContent()
-//                        showAdv()
+                        if(!SoundApp.getUser()!!.isAdmin){
+
+                            showAdv()
+                        }
                     } else {
                         loadingView.showEmptyContent()
                     }
@@ -379,7 +486,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-   private fun showToast(msg: String) {
+    private fun showToast(msg: String) {
 
 
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
@@ -417,3 +524,4 @@ class MainActivity : AppCompatActivity() {
         dataSubscribe?.dispose()
     }
 }
+

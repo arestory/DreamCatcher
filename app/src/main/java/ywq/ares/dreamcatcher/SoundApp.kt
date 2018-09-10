@@ -22,6 +22,7 @@ class SoundApp : Application() {
         CrashHandler.getInstance().init(this)
         AppConnect.getInstance("5af3e56885694b43472a9f6aedd71af2","QQ",this)
         CrashReport.initCrashReport(this,"0e0b08c792",BuildConfig.DEBUG)
+        AppConnect.getInstance(this).setCrashReport(false);//默认值 true 开吭，设置 false 关闭
     }
 
     companion object {

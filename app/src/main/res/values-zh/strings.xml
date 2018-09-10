@@ -38,7 +38,9 @@
     <string name="banner_ad_unit_id">ca-app-pub-8884790662094305/7222184323</string>
     <string name="screen_ad_unit_id">ca-app-pub-8884790662094305/7638785594</string>
     <string name="google_adv_key">ca-app-pub-8884790662094305/7638785594</string>
-    <string name="app_desc">DreamCatcher 是一款梦话捕获软件，你可以设定声音分贝阈值，当你所处的环境超过该阈值，APP会自动开启录音功能。</string>
+    <string name="app_desc">DreamCatcher 是一款梦话捕获软件，你可以设定声音分贝阈值，当你所处的环境超过该阈值，APP会自动开启录音功能。目前并没有有人声分离的功能，录制的并不一定会确实录到你的声音，我们后期会加入AI识别人类声音的功能，敬请期待。</string>
     <string name="action_show_file">文件路径</string>
+    <string name="action_jump">跳转</string>
+    <string name="title_alert_dialog">为确保您能正常使用本APP的功能，请跳转到应用权限设置页面，开启相应的应用权限</string>
 
 </resources>

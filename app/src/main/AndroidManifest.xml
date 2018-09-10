@@ -24,9 +24,9 @@
     <application
         android:name="ywq.ares.dreamcatcher.SoundApp"
         android:allowBackup="true"
-        android:icon="@mipmap/dream_catcher_logo"
+        android:icon="@mipmap/dream_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/dream_catcher_logo"
+        android:roundIcon="@mipmap/dream_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">

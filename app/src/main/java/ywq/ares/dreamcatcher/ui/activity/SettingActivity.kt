@@ -22,7 +22,7 @@ class SettingActivity : BaseActivity() {
 
         val adapter = SettingAdapter()
 
-        adapter.addData(SettingItem(R.drawable.ic_all_inclusive_black_24dp,"更多推荐应用"))
+        adapter.addData(SettingItem(R.drawable.ic_all_inclusive_black_24dp,"突破录制参数限制"))
         adapter.addData(SettingItem(R.drawable.ic_system_update_alt_black_24dp,"检查更新"))
         adapter.addData(SettingItem(R.drawable.ic_delete_forever_black_48dp,"去广告"))
 
@@ -33,11 +33,17 @@ class SettingActivity : BaseActivity() {
 
         initToolbarSetting(toolbar)
 
-        adapter.setOnItemClickListener { item, position ->
+        adapter.setOnItemClickListener { item, _ ->
 
 
-            AppConnect.getInstance(this).showAppOffers(this)
-            Toast.makeText(this,"item = ${item.title}",Toast.LENGTH_SHORT).show()
+            if(item.title == "检查更新"){
+                AppConnect.getInstance(this).checkUpdate(this);
+            }else{
+                AppConnect.getInstance(this).showAppOffers(this)
+
+            }
+
+
         }
 
     }
