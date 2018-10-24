@@ -41,6 +41,8 @@
     <string name="google_adv_key">ca-app-pub-8884790662094305/7638785594</string>
     <string name="app_desc">DreamCatcher is a kind of DreamCatcher software. You can set the threshold of sound decibel. When the environment you are in exceeds this threshold, the APP will automatically turn on the recording function.</string>
     <string name="action_show_file">filePath</string>
-    <string name="title_alert_dialog" translatable="false">"To ensure that you can normally use the functions of the APP, please jump to the application permission and open the corresponding application permission "</string>
+    <string name="title_alert_dialog">"To ensure that you can normally use the functions of the APP, please jump to the application permission and open the corresponding application permission "</string>
+    <string name="tab_mine">dream</string>
+    <string name="tab_social">social</string>
 
 </resources>

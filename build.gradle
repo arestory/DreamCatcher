@@ -5,6 +5,7 @@ buildscript {
     ext.anko_version='0.10.5'
 
     repositories {
+        maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
 
         jcenter()
         maven{
@@ -29,6 +30,7 @@ buildscript {
 allprojects {
     repositories {
 
+        maven { url "https://raw.github.com/bmob/bmob-android-sdk/master" }
 
 
         jcenter()

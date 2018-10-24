@@ -54,7 +54,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="ywq.ares.dreamcatcher.fileprovider"
+            android:authorities="ywq.ares.dreamcatcher.test.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">;
             <meta-data

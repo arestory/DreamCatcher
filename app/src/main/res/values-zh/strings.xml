@@ -42,5 +42,7 @@
     <string name="action_show_file">文件路径</string>
     <string name="action_jump">跳转</string>
     <string name="title_alert_dialog">为确保您能正常使用本APP的功能，请跳转到应用权限设置页面，开启相应的应用权限</string>
+    <string name="tab_mine">我的</string>
+    <string name="tab_social">社区</string>
 
 </resources>

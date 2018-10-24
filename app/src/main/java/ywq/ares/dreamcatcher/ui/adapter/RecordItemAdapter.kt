@@ -116,7 +116,7 @@ class RecordItemAdapter : RecyclerView.Adapter<RecordItemAdapter.ViewHolder>() {
         File(sound.url).delete()
         this.itemList.remove(sound)
 
-        notifyDataSetChanged()
+        notifyItemRemoved(this.itemList.indexOf(sound))
     }
 
 
